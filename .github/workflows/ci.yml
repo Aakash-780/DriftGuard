@@ -1,0 +1,38 @@
+name: CI
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: python -m pip install --upgrade pip
+      - run: pip install -r requirements.txt
+      - name: Unit and integration tests
+        run: python -m pytest
+      - name: Experiment smoke run (2 seeds, deterministic, no network)
+        run: python -m driftguard.experiments.run_all --quick --out ${{ runner.temp }}/exp
+      - uses: actions/upload-artifact@v4
+        with:
+          name: quick-experiment
+          path: ${{ runner.temp }}/exp
+
+  evidently:
+    # Optional adapter. Allowed to fail: its dependency tree is large and its parsing code is the one
+    # part of the project that was not executable when it was written.
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements-evidently.txt
+      - run: python -m pytest tests/test_evidently_adapter.py -v

@@ -1,0 +1,76 @@
+{
+  "config": {
+    "n_seeds_detection": 20,
+    "n_seeds_retraining": 10,
+    "seed_start": 0,
+    "n_batches": 12,
+    "batch_size": 100,
+    "drift_start": 4,
+    "ramp_batches": 4,
+    "scenarios": [
+      "baseline",
+      "covariate",
+      "sudden",
+      "gradual",
+      "concept"
+    ],
+    "detectors": [
+      "ks",
+      "psi",
+      "domain_classifier"
+    ],
+    "regime_eval_rows": 300,
+    "arms": [
+      [
+        "never",
+        "never",
+        "train_plus_window"
+      ],
+      [
+        "performance_only",
+        "performance_only",
+        "train_plus_window"
+      ],
+      [
+        "drift_only",
+        "drift_only",
+        "train_plus_window"
+      ],
+      [
+        "drift_and_performance",
+        "drift_and_performance",
+        "train_plus_window"
+      ],
+      [
+        "drift_or_performance",
+        "drift_or_performance",
+        "train_plus_window"
+      ],
+      [
+        "drift_or_performance+window_only",
+        "drift_or_performance",
+        "window_only"
+      ]
+    ],
+    "sensitivity_magnitudes": [
+      0.1,
+      0.2,
+      0.3,
+      0.5,
+      0.75,
+      1.0,
+      1.5
+    ]
+  },
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.18.44-fc-v153-x86_64-with-glibc2.39",
+    "numpy": "2.4.4",
+    "pandas": "3.0.2",
+    "scipy": "1.17.1",
+    "sklearn": "1.8.0",
+    "matplotlib": "3.10.8",
+    "evidently": null,
+    "mlflow": null
+  }
+}

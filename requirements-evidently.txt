@@ -1,0 +1,5 @@
+# Optional: Evidently AI detector (legacy 0.4.x API used by driftguard/monitoring/evidently_adapter.py).
+# Kept separate because its dependency tree is large and its resolver compatibility with the pins in
+# requirements.txt could not be verified offline when this project was written. See README "Evidently".
+-r requirements.txt
+evidently==0.4.40

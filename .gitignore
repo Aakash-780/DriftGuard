@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.env
+*.db
+mlruns/
+# runtime state is generated; committed experiment results are kept
+artifacts/*
+!artifacts/experiments/
+.DS_Store

@@ -1,0 +1,23 @@
+# DriftGuard -- pinned, mutually compatible set (Python 3.10-3.12; CI uses 3.11).
+# Core numerics: versions chosen together because mlflow 2.16 and the 2024 scientific stack require numpy<2, pandas<3.
+numpy==1.26.4
+pandas==2.2.3
+scipy==1.13.1
+scikit-learn==1.5.2
+joblib==1.4.2
+matplotlib==3.9.2
+
+# Experiment tracking
+mlflow==2.16.2
+
+# API
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+pydantic==2.9.2
+httpx==0.27.2          # required by fastapi.testclient
+
+# Dashboard
+streamlit==1.38.0
+
+# Tests
+pytest==8.3.3
